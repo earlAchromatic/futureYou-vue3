@@ -1,0 +1,12 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.box {
+  background-color: rgba(73, 67, 67, 0.75);
+}
+
+/* this needs to be in component but there are some glaring render issues atm. */
