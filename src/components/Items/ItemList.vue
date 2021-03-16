@@ -1,7 +1,6 @@
 <template>
   <div class="box">
-    <h1 class="title">{{ getInterest }}</h1>
-    <h1 class="title">{{ getTimeline }}</h1>
+    <h1 class="title">Items</h1>
     <div v-if="items.length === 0">
       please add some items
     </div>

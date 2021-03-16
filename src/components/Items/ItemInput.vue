@@ -1,7 +1,17 @@
 <template>
   <div class="box">
     <h1 class="title">Enter Items You Are Thinking of Buying</h1>
+    <div class="level" v-if="errors.length">
+        <p >
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="(value, idx) in errors" :key="idx">{{ value }}</li>
+        </ul>
+      </p>
+      </div>
     <div class="columns">
+      
+      
       <div class="column is-half">
         <input
           class="input"
@@ -15,11 +25,11 @@
           class="column input"
           type="text"
           placeholder="Item Cost"
-          v-model="inputCost"
+          v-model.number="inputCost"
         />
       </div>
       <div class="column">
-        <button class="button is-dark" @click="addItem(buildObject)">
+        <button class="button is-dark" @click="submitInput">
           Add Item
         </button>
       </div>
@@ -36,13 +46,13 @@ export default {
   setup() {
     const { addItem, removeItem, calculateFV, getItems } = itemData();
     const items = getItems;
-    console.log(items);
     return { addItem, removeItem, calculateFV, items };
   },
   data: function() {
+    var errors = [];
     var inputName = "";
-    var inputCost = "";
-    return { inputName, inputCost };
+    var inputCost = 0;
+    return { inputName, inputCost, errors };
   },
   computed: {
     buildObject() {
@@ -53,6 +63,18 @@ export default {
       };
     },
   },
+  methods: {
+    submitInput(){
+      console.log(typeof(this.inputCost))
+      if(typeof this.inputCost != 'number'){
+        this.errors = [];
+        this.errors.push('Cost must be a number')
+      }
+      else{
+        this.addItem(this.buildObject);
+      }
+    }
+  }
 };
 </script>
 
