@@ -7,7 +7,7 @@
           class="input"
           type="text"
           placeholder="Item Name"
-          v-model="itemName"
+          v-model="inputName"
         />
       </div>
       <div class="column">
@@ -15,11 +15,11 @@
           class="column input"
           type="text"
           placeholder="Item Cost"
-          v-model="itemCost"
+          v-model="inputCost"
         />
       </div>
       <div class="column">
-        <button class="button is-dark">
+        <button class="button is-dark" @click="addItem(buildObject)">
           Add Item
         </button>
       </div>
@@ -28,14 +28,30 @@
 </template>
 
 <script lang="ts">
+import { itemData } from "../../store.js";
+
 export default {
   name: "ItemInput",
+  setup() {
+    const { addItem, removeItem, getItems } = itemData();
+    const items = getItems;
+    console.log(items);
+    return { addItem, removeItem, items };
+  },
   components: {},
   data: function() {
-    return {
-      itemName: "",
-      itemCost: 0,
-    };
+    var inputName = "";
+    var inputCost = "";
+    return { inputName, inputCost };
+  },
+  computed: {
+    buildObject() {
+      return {
+        itemName: this.inputName,
+        cost: this.inputCost,
+        futureCost: 0,
+      };
+    },
   },
 };
 </script>
