@@ -1,12 +1,16 @@
 import { ref, computed } from "vue";
 
-export const data = ref([
+//this is outside of the export function so that only one 'state' object is ever in created and used across the project.
+const data = ref([
   {
     itemName: "dog",
     cost: 0,
     futureCost: 0,
   },
 ]);
+
+const interestRate = ref(0.06); //out of 1 (%)
+const timeLine = ref(30); //in years
 
 export function itemData() {
   function addItem(item) {
@@ -20,11 +24,44 @@ export function itemData() {
     );
   }
 
+  function updateInterest(newValue) {
+    let div = newValue / 100;
+    interestRate.value = div;
+    updateAllData();
+  }
+
+  function updateTimeline(newValue) {
+    timeLine.value = newValue;
+    updateAllData();
+  }
+
+  function updateAllData() {
+    data.value.forEach((e) => {
+      e.futureCost = calculateFV(e.cost);
+    });
+  }
+
+  function calculateFV(cost) {
+    console.log(
+      `interest rate: ${interestRate.value} and timeline: ${timeLine.value}`
+    );
+    let FV = cost * (1 + interestRate.value) ** timeLine.value;
+    console.log(FV);
+    return FV;
+  }
+
   const getItems = computed(() => data.value);
+  const getInterest = computed(() => interestRate.value);
+  const getTimeline = computed(() => timeLine.value);
 
   return {
-    addItem: addItem,
-    removeItem: removeItem,
+    addItem,
+    removeItem,
+    calculateFV,
+    updateInterest,
+    updateTimeline,
+    getInterest,
+    getTimeline,
     getItems,
   };
 }

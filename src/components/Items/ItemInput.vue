@@ -24,6 +24,7 @@
         </button>
       </div>
     </div>
+    {{ items }}
   </div>
 </template>
 
@@ -33,12 +34,11 @@ import { itemData } from "../../store.js";
 export default {
   name: "ItemInput",
   setup() {
-    const { addItem, removeItem, getItems } = itemData();
+    const { addItem, removeItem, calculateFV, getItems } = itemData();
     const items = getItems;
     console.log(items);
-    return { addItem, removeItem, items };
+    return { addItem, removeItem, calculateFV, items };
   },
-  components: {},
   data: function() {
     var inputName = "";
     var inputCost = "";
@@ -49,7 +49,7 @@ export default {
       return {
         itemName: this.inputName,
         cost: this.inputCost,
-        futureCost: 0,
+        futureCost: this.calculateFV(this.inputCost),
       };
     },
   },

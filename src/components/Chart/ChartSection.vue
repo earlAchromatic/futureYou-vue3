@@ -9,6 +9,14 @@
         :series="series"
       ></TheChart>
       <div class="column">
+        <div>
+          {{
+            timelineInput.toLocaleString(undefined, {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 1,
+            })
+          }}
+        </div>
         <input
           type="range"
           name="Timeline"
@@ -17,7 +25,10 @@
           max="30"
           step="any"
           list="timelineticks"
+          v-model.number="timelineInput"
+          v-on:change="updateTimeline(timelineInput)"
         />
+        <label for="Timeline">Timeline</label>
         <datalist id="timelineticks">
           <option value="0"></option>
           <option value="5"></option>
@@ -28,6 +39,14 @@
           <option value="30"></option>
         </datalist>
 
+        <div>
+          {{
+            interestInput.toLocaleString(undefined, {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 1,
+            })
+          }}
+        </div>
         <input
           type="range"
           name="Interest Rate"
@@ -36,7 +55,10 @@
           max="15"
           step="any"
           list="interestticks"
+          v-model.number="interestInput"
+          v-on:change="updateInterest(interestInput)"
         />
+        <label for="InterestRate">Interest Rate</label>
         <datalist id="interestticks">
           <option value="2"></option>
           <option value="4"></option>
@@ -53,17 +75,24 @@
 
 <script lang="ts">
 import VueApexCharts from "vue3-apexcharts";
+import { itemData } from "../../store";
 
 export default {
   name: "ChartSection",
+  setup() {
+    const { updateInterest, updateTimeline } = itemData();
+
+    return { updateInterest, updateTimeline };
+  },
   components: {
     TheChart: VueApexCharts,
   },
-  props: {
-    itemListData: Object,
-  },
   data: function() {
+    var timelineInput = 30;
+    var interestInput = 6;
     return {
+      timelineInput,
+      interestInput,
       chartOptions: {
         noData: {
           text: "Enter an Item",
