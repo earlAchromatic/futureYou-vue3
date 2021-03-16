@@ -6,7 +6,7 @@
         height="400"
         type="bar"
         :options="chartOptions"
-        :series="series"
+        :series="generateChartSeries"
       ></TheChart>
       <div class="column">
         <div>
@@ -80,9 +80,9 @@ import { itemData } from "../../store";
 export default {
   name: "ChartSection",
   setup() {
-    const { updateInterest, updateTimeline } = itemData();
+    const { updateInterest, updateTimeline, getItems } = itemData();
 
-    return { updateInterest, updateTimeline };
+    return { updateInterest, updateTimeline, getItems };
   },
   components: {
     TheChart: VueApexCharts,
@@ -112,10 +112,25 @@ export default {
           id: "FutureYou",
           background: "#00000000",
         },
+        yaxis: {
+          labels: {
+            formatter: function(val) {
+              return val.toLocaleString(undefined, {
+                maximumFractionDigits: 0,
+              });
+            },
+          },
+        },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          type: "category",
+          categories: ["item1"],
         },
         dataLabels: {
+          formatter: function(val) {
+            return `$${val.toLocaleString(undefined, {
+              maximumFractionDigits: 0,
+            })}`;
+          },
           style: {
             colors: ["#ffffff"],
           },
@@ -125,25 +140,38 @@ export default {
           palette: "palette3",
         },
       },
-      series: [
-        {
-          name: "PRODUCT A",
-          data: [44, 55, 41, 67, 22, 43],
-        },
-        {
-          name: "PRODUCT B",
-          data: [13, 23, 20, 8, 13, 27],
-        },
-        {
-          name: "PRODUCT C",
-          data: [11, 17, 15],
-        },
-        {
-          name: "PRODUCT D",
-          data: [21, 7, 25, 13, 22, 8],
-        },
-      ],
     };
+  },
+  updated() {
+    console.log(this.series);
+  },
+  computed: {
+    generateCategories() {
+      return 0;
+    },
+    generateChartSeries() {
+      let series = [
+        {
+          name: "Cost Today",
+          data: [],
+        },
+        {
+          name: "Future Cost",
+          data: [],
+        },
+      ];
+
+      this.getItems.forEach((e) => {
+        console.log(e.futureCost);
+        series[0].data.push(e.cost);
+        series[1].data.push(e.futureCost);
+      });
+      console.log(series);
+      return series;
+    },
+  },
+  methods: {
+    addColumnItem() {},
   },
 };
 </script>

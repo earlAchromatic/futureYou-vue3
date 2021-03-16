@@ -65,9 +65,10 @@ export default {
   },
   methods: {
     submitInput(){
+      this.errors = [];
       console.log(typeof(this.inputCost))
       if(typeof this.inputCost != 'number'){
-        this.errors = [];
+        
         this.errors.push('Cost must be a number')
       }
       else{
