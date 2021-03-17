@@ -6,7 +6,7 @@
         height="400"
         type="bar"
         :options="chartOptions"
-        :series="generateChartSeries"
+        :series="generateChartSeries.series"
       ></TheChart>
       <div class="column">
         <div>
@@ -117,7 +117,7 @@ export default {
           id: "FutureYou",
           background: "#00000000",
           toolbar: {
-            show: true,
+            show: false,
           },
           zoom: {
             enabled: true,
@@ -157,26 +157,11 @@ export default {
     this.addSVGAnimate();
   },
   beforeUpdate() {
-    this.chartOptions = this.generateCategories;
+    this.chartOptions = this.updateChartOptions();
   },
   computed: {
-    generateCategories() {
-      let cats = [];
-      this.getItems.forEach((e) => {
-        cats.push(e.itemName);
-      });
-
-      let chartOptions = {
-        ...this.chartOptions,
-        xaxis: {
-          type: "category",
-          categories: cats,
-        },
-      };
-
-      return chartOptions;
-    },
     generateChartSeries() {
+      let cats = [];
       let series = [
         {
           name: "Cost Today",
@@ -189,13 +174,24 @@ export default {
       ];
 
       this.getItems.forEach((e) => {
+        cats.push(e.itemName);
         series[0].data.push(e.cost);
         series[1].data.push(e.futureCost);
       });
-      return series;
+      return { series, cats };
     },
   },
   methods: {
+    updateChartOptions() {
+      let chartOptions = {
+        ...this.chartOptions,
+        xaxis: {
+          type: "category",
+          categories: this.generateChartSeries.cats,
+        },
+      };
+      return chartOptions;
+    },
     addSVGAnimate() {
       var el = document.querySelector("#apexchartsFutureYou > svg");
 

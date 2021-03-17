@@ -20,7 +20,7 @@
       </div>
       <div class="column">
         <input
-          class="column input"
+          class=" input"
           type="text"
           placeholder="Item Cost"
           v-model.number="inputCost"
@@ -63,8 +63,8 @@ export default {
   methods: {
     submitInput(){
       //bug here - if user enters '30,000', the result is cut off after ',' leaving 30. fixes?
+      //add force item name
       this.errors = [];
-      console.log(typeof(this.inputCost))
       if(typeof this.inputCost != 'number'){
         
         this.errors.push('Cost must be a number')
@@ -72,9 +72,15 @@ export default {
       else{
         this.addItem(this.buildObject);
       }
+      this.inputName = ""
+      this.inputCost = ''
     }
   }
 };
 </script>
 
-<style scoped lang="css"></style>
+<style scoped lang="css">
+.columns{
+  align-items: center;
+}
+</style>

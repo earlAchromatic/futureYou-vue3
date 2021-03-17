@@ -1,6 +1,5 @@
 <template>
   <div class="box">
-    <h1 class="title">Items</h1>
     <div v-if="items.length === 0">
       please add some items
     </div>
@@ -31,7 +30,14 @@
                 })
               }}
             </td>
-            <td><button @click="removeItem(value)">remove item</button></td>
+            <td>
+              <a @click="removeItem(value)" class="icon"
+                ><img
+                  class="eraser"
+                  src="../../assets/eraser-hand-drawn-tool.svg"
+                  alt=""
+              /></a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -47,11 +53,7 @@ export default {
   setup() {
     const { removeItem, getItems, getInterest, getTimeline } = itemData();
     const items = getItems;
-    console.log(items);
     return { removeItem, items, getInterest, getTimeline };
-  },
-  data: function() {
-    return {};
   },
 };
 </script>
@@ -60,5 +62,8 @@ export default {
 .box {
   max-height: 400px;
   overflow: auto;
+}
+.eraser:hover {
+  transform: scale(1.1);
 }
 </style>

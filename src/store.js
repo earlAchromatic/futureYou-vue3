@@ -42,34 +42,9 @@ export function itemData() {
   }
 
   function calculateFV(cost) {
-    console.log(
-      `interest rate: ${interestRate.value} and timeline: ${timeLine.value}`
-    );
     let FV = cost * (1 + interestRate.value) ** timeLine.value;
-    console.log(FV);
     return FV;
   }
-
-  // const generateChartSeries = computed(() => {
-  //   let series = [
-  //     {
-  //       name: "Cost Today",
-  //       data: [],
-  //     },
-  //     {
-  //       name: "Future Cost",
-  //       data: [],
-  //     },
-  //   ];
-
-  //   getItems.value.forEach((e) => {
-  //     console.log(e.futureCost);
-  //     series[0].data.push(e.cost);
-  //     series[1].data.push(e.futureCost);
-  //   });
-  //   console.log(series);
-  //   return series;
-  // });
 
   const getItems = computed(() => data.value);
   const getInterest = computed(() => interestRate.value);
@@ -81,7 +56,6 @@ export function itemData() {
     calculateFV,
     updateInterest,
     updateTimeline,
-    // generateChartSeries,
     getInterest,
     getTimeline,
     getItems,
