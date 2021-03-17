@@ -10,8 +10,6 @@
       </p>
       </div>
     <div class="columns">
-      
-      
       <div class="column is-half">
         <input
           class="input"
@@ -34,7 +32,6 @@
         </button>
       </div>
     </div>
-    {{ items }}
   </div>
 </template>
 
@@ -51,7 +48,7 @@ export default {
   data: function() {
     var errors = [];
     var inputName = "";
-    var inputCost = 0;
+    var inputCost ;
     return { inputName, inputCost, errors };
   },
   computed: {
@@ -65,6 +62,7 @@ export default {
   },
   methods: {
     submitInput(){
+      //bug here - if user enters '30,000', the result is cut off after ',' leaving 30. fixes?
       this.errors = [];
       console.log(typeof(this.inputCost))
       if(typeof this.inputCost != 'number'){

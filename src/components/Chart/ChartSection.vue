@@ -21,9 +21,9 @@
           type="range"
           name="Timeline"
           id="Timeline"
-          min="0"
+          min="1"
           max="30"
-          step="any"
+          step="1"
           list="timelineticks"
           v-model.number="timelineInput"
           v-on:change="updateTimeline(timelineInput)"
@@ -53,7 +53,7 @@
           id="InterestRate"
           min="0"
           max="15"
-          step="any"
+          step="0.1"
           list="interestticks"
           v-model.number="interestInput"
           v-on:change="updateInterest(interestInput)"
@@ -106,11 +106,22 @@ export default {
             fontFamily: undefined,
           },
         },
+        legend: {
+          onItemClick: {
+            toggleDataSeries: false,
+          },
+        },
         chart: {
           type: "bar",
           stacked: true,
           id: "FutureYou",
           background: "#00000000",
+          toolbar: {
+            show: true,
+          },
+          zoom: {
+            enabled: true,
+          },
         },
         yaxis: {
           labels: {
@@ -123,7 +134,7 @@ export default {
         },
         xaxis: {
           type: "category",
-          categories: ["item1"],
+          categories: [],
         },
         dataLabels: {
           formatter: function(val) {
@@ -137,17 +148,33 @@ export default {
         },
         theme: {
           mode: "dark",
-          palette: "palette3",
+          palette: "palette5",
         },
       },
     };
   },
   updated() {
-    console.log(this.series);
+    this.addSVGAnimate();
+  },
+  beforeUpdate() {
+    this.chartOptions = this.generateCategories;
   },
   computed: {
     generateCategories() {
-      return 0;
+      let cats = [];
+      this.getItems.forEach((e) => {
+        cats.push(e.itemName);
+      });
+
+      let chartOptions = {
+        ...this.chartOptions,
+        xaxis: {
+          type: "category",
+          categories: cats,
+        },
+      };
+
+      return chartOptions;
     },
     generateChartSeries() {
       let series = [
@@ -162,24 +189,42 @@ export default {
       ];
 
       this.getItems.forEach((e) => {
-        console.log(e.futureCost);
         series[0].data.push(e.cost);
         series[1].data.push(e.futureCost);
       });
-      console.log(series);
       return series;
     },
   },
   methods: {
-    addColumnItem() {},
+    addSVGAnimate() {
+      var el = document.querySelector("#apexchartsFutureYou > svg");
+
+      //insert defs tag containing color and animation
+      var tag = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+      tag.innerHTML = `<linearGradient id="skyGradient" x1="100%" y1="100%">
+    <stop offset="0%" stop-color="lightblue" stop-opacity=".5">
+      <animate attributeName="stop-color" values="lightblue;blue;red;red;black;red;red;purple;lightblue" dur="14s" repeatCount="indefinite" />
+    </stop>
+    <stop offset="100%" stop-color="lightblue" stop-opacity=".5">
+      <animate attributeName="stop-color" values="lightblue;orange;purple;purple;black;purple;purple;blue;lightblue" dur="14s" repeatCount="indefinite" />
+      <animate attributeName="offset" values=".95;.80;.60;.40;.20;0;.20;.40;.60;.80;.95" dur="14s" repeatCount="indefinite" />    
+    </stop>
+  </linearGradient>`;
+
+      el.appendChild(tag);
+    },
   },
 };
 </script>
 
-<style scoped lang="css">
+<style lang="css">
 input {
   margin: 20px;
   width: 300px;
   color: white;
+}
+
+.apexcharts-series[seriesName="FuturexCost"] > path {
+  fill: url("#skyGradient") !important;
 }
 </style>
