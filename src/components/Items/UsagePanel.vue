@@ -26,4 +26,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="sass">
+@import '../../../public/sass/style.sass';
+
+article
+  box-shadow: $secondary-shadow
+</style>

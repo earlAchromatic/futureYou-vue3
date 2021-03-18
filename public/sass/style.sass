@@ -11,7 +11,7 @@ $key-lime: hsla(73, 72%, 75%, 1);
 $yellow-green-crayola: hsla(92, 62%, 72%, 1);
 $granny-smith-apple: hsla(110, 50%, 70%, 1);
 $ocean-green: hsla(141, 43%, 62%, 1);
-$keppel: hsla(163, 41%, 52%, 1);
+$keppel: hsla(163, 41%, 75%, 1);
 $viridian-green: hsla(182, 52%, 42%, 1);
 $blue-munsell: hsla(194, 77%, 38%, 1);
 $celadon-blue: hsla(199, 72%, 36%, 1);
@@ -25,11 +25,12 @@ $grey-light: $granny-smith-apple;
 $primary: $ocean-green;
 $secondary: $grey-dark
 $info: $granny-smith-apple
-$link: $lapis-lazuli;
+$link: $keppel;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 $text: $lapis-lazuli
 $shadow: 0 5px 5px 0 rgba(0,0,0,0.5)
+$secondary-shadow: 0 3px 5px -3px rgba(0, 0, 0, 50%);
 
 
 // Update some of Bulma's component variables
@@ -38,8 +39,8 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 $box-shadow: $shadow
-.columns:last-child
-    margin-bottom: 0
+$input-shadow: $shadow
+
 
 // Import only what you need from Bulma
 // @import "../node_modules/bulma/sass/utilities/_all.sass";
@@ -53,3 +54,105 @@ $box-shadow: $shadow
 // @import "../node_modules/bulma/sass/layout/section.sass";
 
 @import "../../node_modules/bulma/bulma.sass";
+
+
+//Sliders
+input[type=range]
+    -webkit-appearance: none;
+
+
+input[type=range]::-webkit-slider-runnable-track 
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+
+
+input[type=range]::-webkit-slider-thumb 
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: $secondary;
+    margin-top: -6px;
+
+
+input[type=range]:focus 
+    outline: none;
+
+
+input[type=range]:focus::-webkit-slider-runnable-track 
+    background: #ccc;
+
+input[type=range]
+    /* fix for FF unable to apply focus style bug  */
+    border: 1px solid white; 
+
+    /*required for proper track sizing in FF*/
+    width: 300px;
+
+
+input[type=range]::-moz-range-track 
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+
+
+input[type=range]::-moz-range-thumb 
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring
+    outline: 1px solid white;
+    outline-offset: -1px;
+
+
+input[type=range]:focus::-moz-range-track 
+    background: #ccc;
+
+
+
+input[type=range]::-ms-track 
+    width: 300px;
+    height: 5px;
+    
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+
+input[type=range]::-ms-fill-lower 
+    background: #777;
+    border-radius: 10px;
+
+input[type=range]::-ms-fill-upper 
+    background: #ddd;
+    border-radius: 10px;
+
+input[type=range]::-ms-thumb 
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+    
+
+input[type=range]:focus::-ms-fill-lower 
+    background: #888;
+
+input[type=range]:focus::-ms-fill-upper 
+    background: #ccc;

@@ -12,10 +12,10 @@
         </ul>
       </p>
       </div>
-    <div class="box columns">
-      <div class="column is-half">
+    <div class=" columns inputs">
+      <div class="column is-two-fifths">
         <input
-          class="input"
+          class="input box"
           type="text"
           placeholder="Item Name"
           v-model="inputName"
@@ -23,14 +23,14 @@
       </div>
       <div class="column">
         <input
-          class=" input"
+          class=" input box"
           type="text"
           placeholder="Item Cost"
           v-model.number="inputCost"
         />
       </div>
       <div class="column">
-        <button class="button is-dark" @click="submitInput">
+        <button class="box button is-secondary" @click="submitInput">
           Add Item
         </button>
       </div>
@@ -84,8 +84,17 @@ export default {
 };
 </script>
 
-<style scoped lang="css">
-.columns{
+<style scoped lang="sass">
+@import '../../../public/sass/style.sass';
+
+article
+  box-shadow: $secondary-shadow
+.columns
   align-items: center;
-}
+
+.is-secondary
+  background-color: $secondary
+  border: none
+  color: $link
+
 </style>
