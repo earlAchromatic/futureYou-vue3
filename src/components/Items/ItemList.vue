@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="list">
     <div v-if="items.length === 0">
       please add some items
     </div>
@@ -56,10 +56,14 @@ export default {
     return { removeItem, items, getInterest, getTimeline };
   },
 };
+
+//Add Sum column
+//ability to edit fields from within the table?
+//
 </script>
 
 <style scoped lang="css">
-.box {
+.list {
   max-height: 400px;
   overflow: auto;
 }

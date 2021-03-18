@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+/* SCSS HSL */
+$key-lime: hsla(73, 72%, 75%, 1);
+$yellow-green-crayola: hsla(92, 62%, 72%, 1);
+$granny-smith-apple: hsla(110, 50%, 70%, 1);
+$ocean-green: hsla(141, 43%, 62%, 1);
+$keppel: hsla(163, 41%, 52%, 1);
+$viridian-green: hsla(182, 52%, 42%, 1);
+$blue-munsell: hsla(194, 77%, 38%, 1);
+$celadon-blue: hsla(199, 72%, 36%, 1);
+$lapis-lazuli: hsla(206, 66%, 34%, 1);
+$bittersweet: hsla(7, 86%, 64%, 1);
+
+// Update Bulma's global variables
+$family-sans-serif: "Nunito", sans-serif;
+$grey-dark: $viridian-green;
+$grey-light: $granny-smith-apple;
+$primary: $ocean-green;
+$secondary: $grey-dark
+$info: $granny-smith-apple
+$link: $lapis-lazuli;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+$text: $lapis-lazuli
+$shadow: 0 5px 5px 0 rgba(0,0,0,0.5)
+
+
+// Update some of Bulma's component variables
+$table-background-color: transparent
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+$box-shadow: $shadow
+.columns:last-child
+    margin-bottom: 0
+
+// Import only what you need from Bulma
+// @import "../node_modules/bulma/sass/utilities/_all.sass";
+// @import "../node_modules/bulma/sass/base/_all.sass";
+// @import "../node_modules/bulma/sass/elements/button.sass";
+// @import "../node_modules/bulma/sass/elements/container.sass";
+// @import "../node_modules/bulma/sass/elements/title.sass";
+// @import "../node_modules/bulma/sass/form/_all.sass";
+// @import "../node_modules/bulma/sass/components/navbar.sass";
+// @import "../node_modules/bulma/sass/layout/hero.sass";
+// @import "../node_modules/bulma/sass/layout/section.sass";
+
+@import "../../node_modules/bulma/bulma.sass";

@@ -2,7 +2,12 @@
   <div>
     <TheModal></TheModal>
     <TheHeader></TheHeader>
-    <div class="container">
+    <div class="container is-flex is-justify-content-center is-flex-wrap-wrap">
+      <div class=" is-secondary">
+        <h1 class="title is-4">
+          purchase analyzer & dissuasion calculator
+        </h1>
+      </div>
       <div class="columns">
         <ItemSection></ItemSection>
         <ChartSection></ChartSection>
@@ -31,24 +36,18 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  /* background: linear-gradient(
-    141deg,
-    rgba(255, 207, 80, 1) 12%,
-    rgba(180, 55, 84, 1) 49%
-  ); */
-  background: url(https://images.unsplash.com/photo-1615529328331-f8917597711f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-blend-mode: darken;
+<style lang="sass">
+@import '../public/sass/style.sass';
+
+.is-secondary
+  background-color:
+  margin-bottom: 25px
+#app
   position: relative;
   min-height: 100vh;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+
   color: #2c3e50;
-}
 </style>

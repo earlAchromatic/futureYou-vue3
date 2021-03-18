@@ -27,7 +27,7 @@ export default {
   setup() {},
   data: function() {
     return {
-      modalToggle: true,
+      modalToggle: false,
     };
   },
 };

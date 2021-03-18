@@ -1,6 +1,9 @@
 <template>
-  <div class="box">
-    <h1 class="title">Enter Items You Are Thinking of Buying</h1>
+<article class="message is-primary">
+  <div class="message-header">
+    <p>enter some items you are thinking of buying:</p>
+  </div>
+  <div class="message-body">
     <div class="level" v-if="errors.length">
         <p >
         <b>Please correct the following error(s):</b>
@@ -9,7 +12,7 @@
         </ul>
       </p>
       </div>
-    <div class="columns">
+    <div class="box columns">
       <div class="column is-half">
         <input
           class="input"
@@ -33,6 +36,8 @@
       </div>
     </div>
   </div>
+</article>
+
 </template>
 
 <script lang="ts">

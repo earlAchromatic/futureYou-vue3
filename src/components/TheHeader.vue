@@ -1,6 +1,8 @@
 <template>
-  <header class="header container">
-    <h1 class="tag is-large">Think of Future You</h1>
+  <header
+    class="header has-background-primary is-flex is-flex-direction-column"
+  >
+    <img class="logo" src="@/assets/logo.png" alt="" />
   </header>
 </template>
 
@@ -8,11 +10,17 @@
 export default {};
 </script>
 
-<style scoped lang="css">
-header {
-  height: 100px;
+<style scoped lang="sass">
+@import '../../public/sass/style.sass';
+.logo
+
+  margin: 40px 0px 20px 0px
+
+header
+  box-shadow: $shadow;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  margin: 0 0 25px 0;
 </style>
