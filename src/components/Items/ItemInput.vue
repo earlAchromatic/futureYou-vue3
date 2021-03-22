@@ -23,7 +23,7 @@
       </div>
       <div class="column">
         <input
-          class=" input box"
+          class="input box"
           type="text"
           placeholder="Item Cost"
           v-model.number="inputCost"
@@ -89,6 +89,7 @@ export default {
 
 article
   box-shadow: $secondary-shadow
+  margin: 10px
 .columns
   align-items: center;
 

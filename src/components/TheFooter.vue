@@ -2,7 +2,9 @@
   <footer class="footer ">
     <div class="columns">
       <div class="column"></div>
-      <span class="column">©2021 Hyperion Web llc</span>
+      <a href="https://Hyperionweb.dev">
+        <span class="column">©2021 Hyperion Web llc</span>
+      </a>
       <div class="column"></div>
     </div>
   </footer>
@@ -16,7 +18,7 @@ export default {
 
 <style scoped lang="sass">
 .footer
-  height: 50px;
+  height: 25px;
   padding: 0;
   position: absolute;
   bottom: 0;
@@ -24,4 +26,9 @@ export default {
   text-align: center;
   .columns:last-child
     margin-bottom: 0
+
+
+@media screen and (max-width: 800px)
+  .footer
+    position: initial
 </style>

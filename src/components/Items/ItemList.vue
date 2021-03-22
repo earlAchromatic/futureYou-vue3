@@ -66,6 +66,7 @@ export default {
 .list {
   max-height: 400px;
   overflow: auto;
+  margin: 10px;
 }
 .eraser:hover {
   transform: scale(1.1);

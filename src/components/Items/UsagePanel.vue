@@ -31,4 +31,5 @@ export default {
 
 article
   box-shadow: $secondary-shadow
+  margin: 10px
 </style>

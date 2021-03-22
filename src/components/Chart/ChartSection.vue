@@ -214,6 +214,9 @@ export default {
 </script>
 
 <style lang="css">
+.box {
+  margin: 10px;
+}
 input {
   margin: 20px;
   width: 300px;
