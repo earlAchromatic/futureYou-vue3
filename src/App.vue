@@ -17,14 +17,15 @@
   </div>
 </template>
 
-<script>
-import TheHeader from "./components/TheHeader";
-import TheFooter from "./components/TheFooter";
-import ItemSection from "./components/Items/ItemSection";
-import ChartSection from "./components/Chart/ChartSection";
-import TheModal from "./components/TheModal";
+<script lang="ts">
+import TheHeader from "./components/TheHeader.vue";
+import TheFooter from "./components/TheFooter.vue";
+import ItemSection from "./components/Items/ItemSection.vue";
+import ChartSection from "./components/Chart/ChartSection.vue";
+import TheModal from "./components/TheModal.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "App",
   components: {
     TheModal,
@@ -33,7 +34,7 @@ export default {
     ItemSection,
     ChartSection,
   },
-};
+});
 </script>
 
 <style lang="sass">

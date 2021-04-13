@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { itemData } from "../../store.js";
+import { itemData } from "../../store";
 
 export default {
   name: "ItemList",

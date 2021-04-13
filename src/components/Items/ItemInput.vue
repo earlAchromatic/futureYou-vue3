@@ -41,9 +41,10 @@
 </template>
 
 <script lang="ts">
-import { itemData } from "../../store.js";
+import { DataItem, itemData } from "../../store";
+import {defineComponent} from 'vue'
 
-export default {
+export default defineComponent({
   name: "ItemInput",
   setup() {
     const { addItem, removeItem, calculateFV, getItems } = itemData();
@@ -51,22 +52,22 @@ export default {
     return { addItem, removeItem, calculateFV, items };
   },
   data: function() {
-    var errors = [];
-    var inputName = "";
-    var inputCost ;
+    var errors: Array<string> = [];
+    var inputName: string = "";
+    var inputCost: number | string = '' ;
     return { inputName, inputCost, errors };
   },
   computed: {
-    buildObject() {
+    buildObject(): DataItem {
       return {
         itemName: this.inputName,
-        cost: this.inputCost,
-        futureCost: this.calculateFV(this.inputCost),
+        cost: parseFloat(this.inputCost),
+        futureCost: this.calculateFV(parseFloat(this.inputCost)),
       };
     },
   },
   methods: {
-    submitInput(){
+    submitInput(): void{
       //bug here - if user enters '30,000', the result is cut off after ',' leaving 30. fixes?
       //add force item name
       this.errors = [];
@@ -81,7 +82,7 @@ export default {
       this.inputCost = ''
     }
   }
-};
+});
 </script>
 
 <style scoped lang="sass">
