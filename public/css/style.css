@@ -7285,5 +7285,4 @@ input[type=range]:focus::-ms-fill-upper {
 
 @media only screen and (max-width: 400px) {
   .container {
-    margin: 0 auto;
-    max-width: 200px; } }
+    margin: 0 auto; } }

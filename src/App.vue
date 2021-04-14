@@ -40,6 +40,7 @@ export default defineComponent({
 <style lang="sass">
 @import '../public/sass/style.sass';
 
+
 .is-secondary
   background-color:
   margin-bottom: 25px
