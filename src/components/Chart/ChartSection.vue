@@ -1,14 +1,14 @@
 <template>
   <div class="column">
     <div class="box">
-      <!-- <TheChart
+      <TheChart
         class="chart"
         height="400"
         type="bar"
         :options="chartOptions"
         :series="generateChartSeries.series"
-      ></TheChart> -->
-      <css-chart></css-chart>
+      ></TheChart>
+      <!-- <css-chart></css-chart> -->
       <div class="column">
         <div>
           {{
@@ -75,12 +75,12 @@
 </template>
 
 <script lang="ts">
-// import VueApexCharts from "vue3-apexcharts";
+import VueApexCharts from "vue3-apexcharts";
 import { defineComponent } from "vue";
 import { ApexOptions } from "apexcharts";
 import { itemData } from "../../store";
 import { DataItem } from "../../../src/store";
-import CssChart from "./CssChart.vue";
+// import CssChart from "./CssChart.vue";
 
 interface SeriesItem {
   name: string;
@@ -100,8 +100,8 @@ export default defineComponent({
     return { updateInterest, updateTimeline, getItems };
   },
   components: {
-    // TheChart: VueApexCharts,
-    CssChart,
+    TheChart: VueApexCharts,
+    //CssChart,
   },
   data: function() {
     var timelineInput: number = 30;
@@ -238,7 +238,7 @@ export default defineComponent({
 
 <style lang="css">
 .box {
-  margin: 10px;
+  /* margin: 10px; */
 }
 input {
   margin: 20px;
@@ -248,5 +248,8 @@ input {
 
 .apexcharts-series[seriesName="FuturexCost"] > path {
   fill: url("#skyGradient") !important;
+}
+.apexcharts-legend-text {
+  color: black !important;
 }
 </style>

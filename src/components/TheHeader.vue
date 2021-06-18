@@ -14,11 +14,12 @@ export default {};
 @import '../../public/sass/style.sass';
 .logo
 
-  margin: 40px 0px 20px 0px
+  //margin: 40px 0px 20px 0px
+
 
 header
   box-shadow: $shadow;
-  height: 75px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;

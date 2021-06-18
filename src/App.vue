@@ -4,8 +4,8 @@
     <TheHeader></TheHeader>
     <div class="container  is-flex is-justify-content-center is-flex-wrap-wrap">
       <div class=" is-secondary">
-        <h1 class="title is-4">
-          purchase analyzer & dissuasion tool
+        <h1 class=" title is-4">
+          Purchase Analyser
         </h1>
       </div>
       <div class="columns">
