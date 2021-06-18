@@ -1,5 +1,5 @@
 <template>
-  <article v-if="show" class="message is-info">
+  <article v-show="show" class="message is-info">
     <div class="message-header">
       <p>How to Use this Tool</p>
       <button class="delete" aria-label="delete" @click="show = !show"></button>
