@@ -1,8 +1,8 @@
 <template>
-  <article class="message is-info">
+  <article v-if="show" class="message is-info">
     <div class="message-header">
       <p>How to Use this Tool</p>
-      <button class="delete" aria-label="delete"></button>
+      <button class="delete" aria-label="delete" @click="show = !show"></button>
     </div>
     <div class="message-body is-flex columns">
       <div class="column is-two-thirds">
@@ -20,9 +20,14 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "UsagePanel",
+  data() {
+    return {
+      show: true,
+    };
+  },
 };
 </script>
 

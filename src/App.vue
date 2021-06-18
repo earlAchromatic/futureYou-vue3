@@ -4,8 +4,8 @@
     <TheHeader></TheHeader>
     <div class="container  is-flex is-justify-content-center is-flex-wrap-wrap">
       <div class=" is-secondary">
-        <h1 class="title is-4">
-          purchase analyzer & dissuasion tool
+        <h1 class=" title is-4">
+          Purchase Analyser
         </h1>
       </div>
       <div class="columns">
@@ -17,14 +17,15 @@
   </div>
 </template>
 
-<script>
-import TheHeader from "./components/TheHeader";
-import TheFooter from "./components/TheFooter";
-import ItemSection from "./components/Items/ItemSection";
-import ChartSection from "./components/Chart/ChartSection";
-import TheModal from "./components/TheModal";
+<script lang="ts">
+import TheHeader from "./components/TheHeader.vue";
+import TheFooter from "./components/TheFooter.vue";
+import ItemSection from "./components/Items/ItemSection.vue";
+import ChartSection from "./components/Chart/ChartSection.vue";
+import TheModal from "./components/TheModal.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "App",
   components: {
     TheModal,
@@ -33,11 +34,12 @@ export default {
     ItemSection,
     ChartSection,
   },
-};
+});
 </script>
 
 <style lang="sass">
 @import '../public/sass/style.sass';
+
 
 .is-secondary
   background-color:

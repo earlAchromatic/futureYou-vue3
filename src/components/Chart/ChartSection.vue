@@ -8,6 +8,7 @@
         :options="chartOptions"
         :series="generateChartSeries.series"
       ></TheChart>
+      <!-- <css-chart></css-chart> -->
       <div class="column">
         <div>
           {{
@@ -75,9 +76,23 @@
 
 <script lang="ts">
 import VueApexCharts from "vue3-apexcharts";
+import { defineComponent } from "vue";
+import { ApexOptions } from "apexcharts";
 import { itemData } from "../../store";
+import { DataItem } from "../../../src/store";
+// import CssChart from "./CssChart.vue";
 
-export default {
+interface SeriesItem {
+  name: string;
+  data: Array<number>;
+}
+
+interface ChartUpdate {
+  series: SeriesItem[];
+  cats: Array<string>;
+}
+
+export default defineComponent({
   name: "ChartSection",
   setup() {
     const { updateInterest, updateTimeline, getItems } = itemData();
@@ -86,10 +101,11 @@ export default {
   },
   components: {
     TheChart: VueApexCharts,
+    //CssChart,
   },
   data: function() {
-    var timelineInput = 30;
-    var interestInput = 6;
+    var timelineInput: number = 30;
+    var interestInput: number = 6;
     return {
       timelineInput,
       interestInput,
@@ -125,7 +141,7 @@ export default {
         },
         yaxis: {
           labels: {
-            formatter: function(val) {
+            formatter: function(val: number | string): string {
               return val.toLocaleString(undefined, {
                 maximumFractionDigits: 0,
               });
@@ -137,7 +153,7 @@ export default {
           categories: [],
         },
         dataLabels: {
-          formatter: function(val) {
+          formatter: function(val: number | string): string {
             return `$${val.toLocaleString(undefined, {
               maximumFractionDigits: 0,
             })}`;
@@ -150,7 +166,7 @@ export default {
           mode: "dark",
           palette: "palette5",
         },
-      },
+      } as ApexOptions,
     };
   },
   updated() {
@@ -160,9 +176,9 @@ export default {
     this.chartOptions = this.updateChartOptions();
   },
   computed: {
-    generateChartSeries() {
-      let cats = [];
-      let series = [
+    generateChartSeries(): ChartUpdate {
+      let cats: Array<string> = [];
+      let series: SeriesItem[] = [
         {
           name: "Cost Today",
           data: [],
@@ -173,7 +189,7 @@ export default {
         },
       ];
 
-      this.getItems.forEach((e) => {
+      this.getItems.forEach((e: DataItem) => {
         cats.push(e.itemName);
         series[0].data.push(e.cost);
         series[1].data.push(e.futureCost);
@@ -182,8 +198,8 @@ export default {
     },
   },
   methods: {
-    updateChartOptions() {
-      let chartOptions = {
+    updateChartOptions(): ApexOptions {
+      let chartOptions: ApexOptions = {
         ...this.chartOptions,
         xaxis: {
           type: "category",
@@ -192,30 +208,37 @@ export default {
       };
       return chartOptions;
     },
-    addSVGAnimate() {
-      var el = document.querySelector("#apexchartsFutureYou > svg");
+    addSVGAnimate(): void {
+      var el: HTMLElement | null = document.querySelector(
+        "#apexchartsFutureYou > svg"
+      );
 
       //insert defs tag containing color and animation
-      var tag = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+      var tag: SVGDefsElement | null = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "defs"
+      );
       tag.innerHTML = `<linearGradient id="skyGradient" x1="100%" y1="100%">
     <stop offset="0%" stop-color="lightblue" stop-opacity=".5">
       <animate attributeName="stop-color" values="lightblue;blue;red;red;black;red;red;purple;lightblue" dur="14s" repeatCount="indefinite" />
     </stop>
     <stop offset="100%" stop-color="lightblue" stop-opacity=".5">
       <animate attributeName="stop-color" values="lightblue;orange;purple;purple;black;purple;purple;blue;lightblue" dur="14s" repeatCount="indefinite" />
-      <animate attributeName="offset" values=".95;.80;.60;.40;.20;0;.20;.40;.60;.80;.95" dur="14s" repeatCount="indefinite" />    
+      <animate attributeName="offset" values=".95;.80;.60;.40;.20;0;.20;.40;.60;.80;.95" dur="14s" repeatCount="indefinite" />
     </stop>
   </linearGradient>`;
 
-      el.appendChild(tag);
+      if (el) {
+        el.appendChild(tag);
+      }
     },
   },
-};
+});
 </script>
 
 <style lang="css">
 .box {
-  margin: 10px;
+  /* margin: 10px; */
 }
 input {
   margin: 20px;
@@ -225,5 +248,8 @@ input {
 
 .apexcharts-series[seriesName="FuturexCost"] > path {
   fill: url("#skyGradient") !important;
+}
+.apexcharts-legend-text {
+  color: black !important;
 }
 </style>
