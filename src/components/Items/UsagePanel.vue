@@ -14,7 +14,7 @@
 
       <a class="column box is-large">
         <img src="@/assets/professor-teaching.svg" alt="" />
-        <span>Watch me!</span>
+        <!-- <span>Watch me!</span> -->
       </a>
     </div>
   </article>
